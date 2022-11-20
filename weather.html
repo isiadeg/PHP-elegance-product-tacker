@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <script>
+// At some point in time, a front-end developer needs to obtain some information from the backend 
+// through something called API -> Application Programming Interface
+
+// request info from a backend in html ->   fETCH API , AJAX
+/*
+        AJAX
+Asynchronous Javascript and XML
+
+
+
+*/
+
+
+        let xmlhttp = new XMLHttpRequest();
+
+//xmlhttp -> object, properties, methods . object.methodname()
+
+//define a callback function to executes when the response returns
+
+        xmlhttp.onload = function(){
+
+            //what you receive from the backend can be json, xml,
+            //json => javascript object notation object { "property: value;}
+          let object = JSON.parse(xmlhttp.responseText);
+           console.log(object.current.temp_c);
+           document.getElementsByClassName("location")[0].getElementsByTagName("h1")[0].innerText = object.location.name
+           document.getElementsByClassName("location")[0].getElementsByClassName("time")[0].innerText = object.location.name = `
+           ${object.location.localtime.substring(11)}
+           `
+           document.getElementsByClassName("wind-info")[0].innerText = object.current.wind_kph
+           
+           document.getElementsByClassName("tempdegree")[0].innerHTML = object.current.temp_c+"<sup>o</sup>"+"C"
+           
+           document.getElementsByClassName("condition")[0].innerText = object.current.condition.text
+           
+           document.getElementsByClassName("cloudcover")[0].innerText = object.current.cloud
+       
+        }
+        //open the backend 
+        xmlhttp.open('GET', "http://api.weatherapi.com/v1/current.json?key=8442617ea9f144e39d2101754222010&q=Osogbo");
+        //send the request
+        xmlhttp.send();
+
+    </script>
+    <STYLE>
+        body{
+            margin: 0px;
+        }
+        .wrapper{
+            width: 100vw;
+            height: 100vh;
+            color:white;
+            box-sizing: border-box;
+            background-image: url("https://th.bing.com/th/id/R.60fabf29944c5b38a2fc57fc705de60d?rik=3zKcyaeduWqo1w&pid=ImgRaw&r=0");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .location{
+            position: absolute;
+            top:100px;
+            left: 40%;
+            color:white;
+            text-transform:uppercase;
+        
+        }
+        h1{
+            margin: 0px; padding-bottom: 10px;
+        }
+        .time{
+            text-align: center;
+        }
+        .container-right{
+            position: absolute;
+            right: 100px;
+            top:100px;
+            height: 400px;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        .transparent{
+            position: absolute;
+            top:0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0.1;
+        }
+        .temperature{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .tempdegree{
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </STYLE>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="temperature">
+            <div class="tempdegree">
+
+            </div>
+            <div class="condition">
+
+            </div>
+            <div class="cloudcover">
+
+            </div>
+        </div>
+        <div class="location">
+            <h1></h1>
+            <div class="time"></div>
+        </div>
+        <div class="container-right">
+            <div class="info">
+                <div class="wind">
+                    <div class="title">Wind (kph)</div>
+                    <div class="wind-info">
+                         
+                    </div>
+                </div>
+            </div>
+            <div class="transparent">
+
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="fullscreen">
+
+        <div class="content">
+            My name is Nafiu Mubaraq, I am 13 years old, I am in JSS3, my best friend is Adesoye Abdul Malik, he is 13 years old, we are classmate.
+            My best food is Jollof rice & fried rice with chicken and fried plantain, my best colour is yellow while my best teacher is master Duroshomo, he teaches us Mathematics, I love him because he is so caring and gives us a piece of Idea which can help everyone throughout one’s lifetime.    
+            My hobby is to recite Qur’an and play ball while my dislike is lying. I want to become a medical doctor in future so as to the life of so many people and to cure diseases that people think It is incurable I love  myself and my family.
+             </div>
+
+             <div class="buttonwrap">
+                <div class="button">
+                    Sign here
+                </div>
+            </div>
+
+
+    </div>
+    
+    <style>
+        .buttonwrap{
+            background-color: white;
+            width: max-content;
+            height: max-content;
+            margin-top: 70px;;
+            
+            
+        }
+        .button::after{
+            transform: translateX(-100%);
+            content:"";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top:0px;
+            z-index:1000;
+            background-color: burlywood;
+            z-index: -1;
+            transition: 0.8s;
+        }
+        .button:hover::after{
+            transition: 0.8s;
+            transform: translateX(0px);
+            
+            
+            
+        }
+        .button{
+         overflow: hidden;
+            width: 150px;
+            height: 35px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top:0px;
+            z-index:1;
+
+        }
+        body{
+            margin: 0px;
+        }
+        .fullscreen{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: brown;
+        }
+        .content{
+            width: 450px;
+            position: relative;
+            height: 300px;
+            z-index: 1;
+            text-align: justify;
+            display: flex;
+            padding-left: 20px;
+            align-items: center;
+            justify-content: center;
+            color:white;
+        }
+        .content::after{
+            content: "";
+            position: absolute;
+            top:0px;
+            z-index: -1;
+            opacity: 0.2;
+            padding: 20px;
+            border-radius: 10px;;
+        
+            left:0px;
+            display: block;
+            width: 100%;
+            height: 100%;
+        
+            background-color: black;
+        }
+    </style>
+</body>
+</html>
