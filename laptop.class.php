@@ -158,18 +158,26 @@ $stmnt2->bindValue(3, "On Shelf");
 self::$database->beginTransaction();
 try{
 $result = self::execute_query($prepared);
+if(!$result){
+    self::$database->rollBack();
+    throw new EXCEPTION("An error occured");
+}
 if($prepared->errorInfo()[2]){
     self::$database->rollBack();
     throw new EXCEPTION($prepared->errorInfo()[2]);
 }else{
     try{
         $result = self::execute_query($stmnt2);
+        if(!$result){
+            self::$database->rollBack();
+            throw new EXCEPTION("An error occured");
+        }
         if($stmnt2->errorInfo()[2]){
             self::$database->rollBack();
             throw new EXCEPTION($stmnt2->errorInfo()[2]);
         }else{
             self::$database->commit();
-        }
+              }
 
 
     }catch(EXCEPTION $e){
@@ -179,14 +187,16 @@ if($prepared->errorInfo()[2]){
 }}catch(EXECPTION $e){
     
     http_response_code(500);
-    return json_encode($e->getMessage());
+    return json_encode(["message"=>$e->getMessage()]);
 }
 
 
     }
 
     http_response_code(201);
-    return json_encode(self::$database->lastInsertId());
+    return json_encode(["message"=>"All products have been entered correctly"]);
+      
+    //return json_encode(self::$database->lastInsertId());
 
 
 

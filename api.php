@@ -70,5 +70,9 @@ if(count($_GET)){
             $sales = new Movement();
             echo $sales->find_one($_GET['productTag']);
         }
+        elseif(htmlentities($_GET['mode'])==="get_previous_people"){
+            $previous = new Movement();
+            echo $previous-> get_previous_people();
+        }
     }
 }
